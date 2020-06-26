@@ -1,4 +1,4 @@
-class MaximumSumSubarray{
+class AddOne{
     public int[] plusOne(int[] digits) {
         
         int length = digits.length;
