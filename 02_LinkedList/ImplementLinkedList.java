@@ -79,11 +79,15 @@ class MyLinkedList {
     
     /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     public void addAtIndex(int index, int val) {
-        
-        if(head == null) return;
         Node newNode = new Node(val);
+        if(head == null) {
+            head = newNode;
+            return;
+        }
+        
         if(index == 0){
-            addAtHead(newNode.val);
+            newNode.next = head;
+            head = newNode;
         }
         int count = 0;
         Node temp = head;
