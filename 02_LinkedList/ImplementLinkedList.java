@@ -27,18 +27,18 @@ class MyLinkedList {
         else{
             int count = 0;
             Node temp = head;
+            
             while(temp.next != null){
+                System.out.println(temp.val + " ");
                 temp = temp.next;
                 count++;
                 
+                
                 if(count == index){
-                    break;
-                }
-                else {
-                    return -1;
+                    return temp.val;
                 }
             }
-            return temp.val;
+            return -1;
         }
     }
     
@@ -48,12 +48,13 @@ class MyLinkedList {
         Node node = new Node(val);
         if(head == null){
             head = node;
+            
         }else{
             
-            node.next = head.next;
+            node.next = head;
             head = node;
             
-        }
+        }        
         
     }
     
@@ -81,6 +82,9 @@ class MyLinkedList {
         
         if(head == null) return;
         Node newNode = new Node(val);
+        if(index == 0){
+            addAtHead(newNode.val);
+        }
         int count = 0;
         Node temp = head;
         while(temp.next != null){
@@ -96,6 +100,21 @@ class MyLinkedList {
             }
             
         } 
+        if(length() == index){
+            temp.next = newNode;
+        }
+        
+    }
+    public int length(){
+        
+        if(head == null) return -1;
+        Node temp = head;
+        int size = 1;
+        while(temp.next != null){
+            size++;
+            temp = temp.next;
+        }
+         return size;
         
     }
     
@@ -103,6 +122,16 @@ class MyLinkedList {
     public void deleteAtIndex(int index) {
         
         if(head == null) return;
+        
+        if(index == 0 && length() == 1){
+            
+            head = null;
+            return;
+        }
+        
+        if(index == 0){
+            head = head.next;
+        }
         
         int count = 0;
         Node temp = head;
@@ -116,7 +145,24 @@ class MyLinkedList {
                 temp.next = null;
                 
             } 
+            prev = prev.next;
             
         } 
+    }
+    
+    public void printList(){
+        
+        if(head == null){
+            System.out.print("List is empty!");
+        }
+        else{
+            
+            Node current = head;
+            while(current.next != null){
+                
+                System.out.print(current.val + ",");
+                current = current.next;
+            }
+        }
     }
 }
